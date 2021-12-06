@@ -15,9 +15,17 @@ import java.awt.event.ActionListener;
 public class EscapeRoom {
 
 
+    static JPanel panel;
+    static JRadioButton toyCar,dresser,safe,door,paintings;
+
+    static JLabel introductionLabel,showDresserDialogue;
+    static JTextField userInput;
+    static ButtonGroup radios = new ButtonGroup();
+
+
     public static void main(String[] args) {
 
-
+     EscapeRoomGUI();
 
 
 
@@ -25,7 +33,9 @@ public class EscapeRoom {
     }
     public static void EscapeRoomGUI(){
         JFrame frame;
-        JPanel panel;
+
+
+
 
         frame= new JFrame("Escape Room");
         frame.setSize(400,500);
@@ -34,13 +44,86 @@ public class EscapeRoom {
 
         panel= new JPanel();
 
+        toyCar = new JRadioButton("Toy Car");
+        dresser = new JRadioButton("Dresser");
+        safe = new JRadioButton("Safe");
+        paintings = new JRadioButton("Paintings");
+        door = new JRadioButton("Door");
+        introductionLabel= new JLabel("WE are stuck try to find a way out!!");
+
+
+        panel.setLayout(null);
+        introductionLabel.setBounds(100,25,200,25);
+        toyCar.setBounds(100, 50, 200,25);
+        dresser.setBounds(100,75,200,25);
+        safe.setBounds(100,100,200,25);
+        paintings.setBounds(100,125,200,25);
+        door.setBounds(100,150,200,25);
+
+
+        door.setSelected(true);
+
+        radios.add(toyCar);
+        radios.add(dresser);
+        radios.add(safe);
+        radios.add(paintings);
+        radios.add(door);
+
+        panel.add(introductionLabel);
+        panel.add(toyCar);
+        panel.add(dresser);
+        panel.add(safe);
+        panel.add(paintings);
+        panel.add(door);
 
 
 
 
+
+
+
+
+
+
+        frame.add(panel);
         frame.setVisible(true);
 
 }
+    public static void choiceInDresser(){
+
+
+
+
+    }
+    public static void choiceInToyCar(){
+
+
+
+
+
+    }
+    public static void choiceInSafe(){
+
+
+
+    }
+    public static void choiceInPaintings(){
+
+
+
+
+    }
+    private class newObjectButton implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+
+
+
+        }
+    }
+
 
 
 
