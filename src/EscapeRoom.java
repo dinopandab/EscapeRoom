@@ -16,11 +16,12 @@ public class EscapeRoom {
 
 
     static JPanel panel;
-    static JRadioButton toyCar,dresser,safe,door,paintings;
-
-    static JLabel introductionLabel,showDresserDialogue;
+    static JRadioButton toyCar,dresser,flashLight,screwDriver,safe,door,paintings;
+    static JButton chooseButton;
+    static JLabel introductionLabel,dresserDialogueLabel;
     static JTextField userInput;
     static ButtonGroup radios = new ButtonGroup();
+    static int fL= 0, sD =0;
 
 
     public static void main(String[] args) {
@@ -44,21 +45,27 @@ public class EscapeRoom {
 
         panel= new JPanel();
 
+        introductionLabel= new JLabel("WE are stuck try to find a way out!! Lets find a way out.");
         toyCar = new JRadioButton("Toy Car");
+
         dresser = new JRadioButton("Dresser");
+        flashLight= new JRadioButton("Flashlight");
+        screwDriver = new JRadioButton("Screw Driver");
+
         safe = new JRadioButton("Safe");
         paintings = new JRadioButton("Paintings");
         door = new JRadioButton("Door");
-        introductionLabel= new JLabel("WE are stuck try to find a way out!!");
+        chooseButton = new JButton("choose");
 
 
         panel.setLayout(null);
-        introductionLabel.setBounds(100,25,200,25);
+        introductionLabel.setBounds(100,15,200,25);
         toyCar.setBounds(100, 50, 200,25);
         dresser.setBounds(100,75,200,25);
         safe.setBounds(100,100,200,25);
         paintings.setBounds(100,125,200,25);
         door.setBounds(100,150,200,25);
+        chooseButton.setBounds(100,175,200,25);
 
 
         door.setSelected(true);
@@ -68,6 +75,7 @@ public class EscapeRoom {
         radios.add(safe);
         radios.add(paintings);
         radios.add(door);
+
 
         panel.add(introductionLabel);
         panel.add(toyCar);
@@ -89,10 +97,41 @@ public class EscapeRoom {
         frame.setVisible(true);
 
 }
+    private class newChoiceButton implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (dresser.isSelected()){
+                panel.remove(introductionLabel);
+                choiceInDresser();
+                panel.updateUI();
+            }
+
+
+
+        }
+    }
+    public static void dresserLayout(){
+
+        radios.add(flashLight);
+        radios.add(screwDriver);
+
+        panel.add(flashLight);
+        panel.add(screwDriver);
+
+        flashLight.setBounds(100,50,200,25);
+        screwDriver.setBounds(100,75,200,25);
+
+    }
     public static void choiceInDresser(){
+         dresserLayout();
 
-
-
+        if (flashLight.isSelected()) {
+            fL = 1;
+        }
+        if (screwDriver.isSelected()){
+            sD = 1;
+        }
 
     }
     public static void choiceInToyCar(){
@@ -113,16 +152,7 @@ public class EscapeRoom {
 
 
     }
-    private class newObjectButton implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-
-
-
-
-        }
-    }
 
 
 
