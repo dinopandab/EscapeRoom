@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
+import javax.xml.ws.handler.MessageContext;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,19 +26,14 @@ public class EscapeRoom {
 
     public static void main(String[] args) {
 
-     EscapeRoomGUI();
-
-
-
+        EscapeRoomGUI();
 
     }
     public static void EscapeRoomGUI(){
-        JFrame frame;
 
 
 
-
-        frame= new JFrame("Escape Room");
+        JFrame frame = new JFrame("Escape Room");
         frame.setSize(400,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -70,6 +65,8 @@ public class EscapeRoom {
 
         door.setSelected(true);
 
+        chooseButton.addActionListener(new newChoiceButton());
+
         radios.add(toyCar);
         radios.add(dresser);
         radios.add(safe);
@@ -83,33 +80,46 @@ public class EscapeRoom {
         panel.add(safe);
         panel.add(paintings);
         panel.add(door);
-
-
-
-
-
-
-
+        panel.add(chooseButton);
 
 
 
         frame.add(panel);
         frame.setVisible(true);
+     ;
 
 }
-    private class newChoiceButton implements ActionListener{
-
-        @Override
+    private static class  newChoiceButton implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             if (dresser.isSelected()){
-                panel.remove(introductionLabel);
                 choiceInDresser();
-                panel.updateUI();
             }
-
+            panel.updateUI();
 
 
         }
+    }
+    public static void removeMainPanel(){
+
+        panel.remove(introductionLabel);
+        panel.remove(toyCar);
+        panel.remove(dresser);
+        panel.remove(safe);
+        panel.remove(paintings);
+        panel.remove(door);
+
+
+    }
+    public static void addMainPanel(){
+
+        panel.add(introductionLabel);
+        panel.add(toyCar);
+        panel.add(dresser);
+        panel.add(safe);
+        panel.add(paintings);
+        panel.add(door);
+
+
     }
     public static void dresserLayout(){
 
@@ -122,12 +132,19 @@ public class EscapeRoom {
         flashLight.setBounds(100,50,200,25);
         screwDriver.setBounds(100,75,200,25);
 
+        removeMainPanel();
+
+        panel.updateUI();
+
+
     }
     public static void choiceInDresser(){
          dresserLayout();
 
         if (flashLight.isSelected()) {
             fL = 1;
+            System.out.println("it doesn't work ");
+
         }
         if (screwDriver.isSelected()){
             sD = 1;
