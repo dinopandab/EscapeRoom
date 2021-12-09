@@ -92,12 +92,31 @@ public class EscapeRoom {
     private static class  newChoiceButton implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             if (dresser.isSelected()){
-                choiceInDresser();
+                dresserLayout();
             }
-            panel.updateUI();
+            if (flashLight.isSelected()) {
+               contentInsideItems();
+            }
+            if (screwDriver.isSelected()){
+                contentInsideItems();
+            }
+
+
 
 
         }
+    }
+
+    public static void addMainPanel(){
+
+        panel.add(introductionLabel);
+        panel.add(toyCar);
+        panel.add(dresser);
+        panel.add(safe);
+        panel.add(paintings);
+        panel.add(door);
+
+
     }
     public static void removeMainPanel(){
 
@@ -107,17 +126,6 @@ public class EscapeRoom {
         panel.remove(safe);
         panel.remove(paintings);
         panel.remove(door);
-
-
-    }
-    public static void addMainPanel(){
-
-        panel.add(introductionLabel);
-        panel.add(toyCar);
-        panel.add(dresser);
-        panel.add(safe);
-        panel.add(paintings);
-        panel.add(door);
 
 
     }
@@ -138,32 +146,30 @@ public class EscapeRoom {
 
 
     }
-    public static void choiceInDresser(){
-         dresserLayout();
+    public static void contentInsideItems(){
+       if(flashLight.isSelected()){
+            fL =1;
 
-        if (flashLight.isSelected()) {
-            fL = 1;
-            System.out.println("it doesn't work ");
-
+           System.out.println(fL);
         }
-        if (screwDriver.isSelected()){
-            sD = 1;
-        }
-
+       if(screwDriver.isSelected()){
+           sD = 2;
+           System.out.println(sD);
+       }
     }
-    public static void choiceInToyCar(){
+    public static void toyCarLayout(){
 
 
-
-
-
-    }
-    public static void choiceInSafe(){
 
 
 
     }
-    public static void choiceInPaintings(){
+    public static void safeLayout(){
+
+
+
+    }
+    public static void paintingsLayout(){
 
 
 
