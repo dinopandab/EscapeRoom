@@ -1,3 +1,4 @@
+import javax.naming.MalformedLinkException;
 import javax.swing.*;
 import javax.xml.ws.handler.MessageContext;
 import java.awt.event.ActionEvent;
@@ -16,9 +17,9 @@ public class EscapeRoom {
 
 
     static JPanel panel;
-    static JRadioButton toyCar,dresser,flashLight,screwDriver,safe,door,paintings;
+    static JRadioButton toyCar,dresser,flashLight,screwDriver,safe,door,paintings,backButton;
     static JButton chooseButton;
-    static JLabel introductionLabel,dresserDialogueLabel;
+    static JLabel introductionLabel,dresserDialogueLabel,UVDialogueLabel,screwDriverDialogueLabel;
     static JTextField userInput;
     static ButtonGroup radios = new ButtonGroup();
     static int fL= 0, sD =0;
@@ -34,17 +35,23 @@ public class EscapeRoom {
 
 
         JFrame frame = new JFrame("Escape Room");
-        frame.setSize(400,500);
+        frame.setSize(500,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
         panel= new JPanel();
 
+        backButton = new JRadioButton("Go Back to Main Menu");
+
         introductionLabel= new JLabel("WE are stuck try to find a way out!! Lets find a way out.");
+        dresserDialogueLabel = new JLabel("lets open the dresser wow there seems to be a UV light and screwDriver should we investigate them? ");
+        UVDialogueLabel = new JLabel("Hmm isn't this used to see invisible ink?");
+        screwDriverDialogueLabel = new JLabel("huh can we use this to open soemthing ")
+
         toyCar = new JRadioButton("Toy Car");
 
         dresser = new JRadioButton("Dresser");
-        flashLight= new JRadioButton("Flashlight");
+        flashLight= new JRadioButton("UV Light");
         screwDriver = new JRadioButton("Screw Driver");
 
         safe = new JRadioButton("Safe");
@@ -54,7 +61,7 @@ public class EscapeRoom {
 
 
         panel.setLayout(null);
-        introductionLabel.setBounds(100,15,200,25);
+        introductionLabel.setBounds(100,15,400,25);
         toyCar.setBounds(100, 50, 200,25);
         dresser.setBounds(100,75,200,25);
         safe.setBounds(100,100,200,25);
@@ -100,6 +107,9 @@ public class EscapeRoom {
             if (screwDriver.isSelected()){
                 contentInsideItems();
             }
+            if(backButton.isSelected()){
+                contentInBackButton();
+            }
 
 
 
@@ -116,6 +126,8 @@ public class EscapeRoom {
         panel.add(paintings);
         panel.add(door);
 
+        panel.add(chooseButton);
+
 
     }
     public static void removeMainPanel(){
@@ -129,16 +141,30 @@ public class EscapeRoom {
 
 
     }
+    public static void contentInBackButton(){
+        panel.removeAll();
+        addMainPanel();
+        panel.updateUI();
+
+
+    }
+
+
     public static void dresserLayout(){
 
         radios.add(flashLight);
         radios.add(screwDriver);
+        radios.add(backButton);
 
+        panel.add(dresserDialogueLabel);
         panel.add(flashLight);
         panel.add(screwDriver);
+        panel.add(backButton);
 
+        dresserDialogueLabel.setBounds(100,15,500,25);
         flashLight.setBounds(100,50,200,25);
         screwDriver.setBounds(100,75,200,25);
+        backButton.setBounds(100,100,200,25);
 
         removeMainPanel();
 
@@ -149,7 +175,6 @@ public class EscapeRoom {
     public static void contentInsideItems(){
        if(flashLight.isSelected()){
             fL =1;
-
            System.out.println(fL);
         }
        if(screwDriver.isSelected()){
@@ -175,9 +200,6 @@ public class EscapeRoom {
 
 
     }
-
-
-
 
 
 
