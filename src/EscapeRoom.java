@@ -226,7 +226,7 @@ public class EscapeRoom {
 
                panel.remove(toyCarDialogueLabel);
                panel.add(missingScrewDialogueLabel);
-               missingScrewDialogueLabel.setBounds((100,15,300,25);
+               missingScrewDialogueLabel.setBounds(100,15,300,25);
 
                panel.updateUI();
 
