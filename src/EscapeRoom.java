@@ -17,12 +17,13 @@ public class EscapeRoom {
 
 
     static JPanel panel;
-    static JRadioButton toyCar,dresser,flashLight,screwDriver,safe,door,paintings,backButton;
+    static JRadioButton toyCar,key,openCar,dresser,flashLight,screwDriver,safe,swipeCard,door,paintings,backButton;
     static JButton chooseButton;
-    static JLabel introductionLabel,dresserDialogueLabel,UVDialogueLabel,screwDriverDialogueLabel;
+    static JLabel introductionLabel,toyCarDialogueLabel,keyDialogueLabel,missingScrewDialogueLabel,dresserDialogueLabel,UVDialogueLabel,screwDriverDialogueLabel,paintingsDialogueLabel,
+            invisibleInkDialogueLabel,safeDialogueLabel,codeDialogueLabel,doorDialogueLabel;
     static JTextField userInput;
     static ButtonGroup radios = new ButtonGroup();
-    static int fL= 0, sD =0;
+    static int fL= 0, sD =0 , kY = 0;
 
 
     public static void main(String[] args) {
@@ -44,9 +45,9 @@ public class EscapeRoom {
         backButton = new JRadioButton("Go Back to Main Menu");
 
         introductionLabel= new JLabel("WE are stuck try to find a way out!! Lets find a way out.");
-        dresserDialogueLabel = new JLabel("lets open the dresser wow there seems to be a UV light and screwDriver should we investigate them? ");
-        UVDialogueLabel = new JLabel("Hmm isn't this used to see invisible ink?");
-        screwDriverDialogueLabel = new JLabel("huh can we use this to open soemthing ")
+        dresserDialogueLabel = new JLabel("<html>lets open the dresser wow there seems to be a UV light and screwDriver should we investigate them?</html>");
+        UVDialogueLabel = new JLabel("Hmm isn't this used to see invisible ink? *You Have Collected* ");
+        screwDriverDialogueLabel = new JLabel("huh can we use this to open something? *You hav collected* ");
 
         toyCar = new JRadioButton("Toy Car");
 
@@ -98,6 +99,13 @@ public class EscapeRoom {
 }
     private static class  newChoiceButton implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
+            if (toyCar.isSelected()){
+                toyCarLayout();
+            }
+
+
+
+
             if (dresser.isSelected()){
                 dresserLayout();
             }
@@ -110,6 +118,7 @@ public class EscapeRoom {
             if(backButton.isSelected()){
                 contentInBackButton();
             }
+
 
 
 
@@ -146,10 +155,15 @@ public class EscapeRoom {
         addMainPanel();
         panel.updateUI();
 
-
     }
 
+    public static void toyCarLayout(){
 
+
+
+
+
+    }
     public static void dresserLayout(){
 
         radios.add(flashLight);
@@ -161,7 +175,7 @@ public class EscapeRoom {
         panel.add(screwDriver);
         panel.add(backButton);
 
-        dresserDialogueLabel.setBounds(100,15,500,25);
+        dresserDialogueLabel.setBounds(100,15,300,25);
         flashLight.setBounds(100,50,200,25);
         screwDriver.setBounds(100,75,200,25);
         backButton.setBounds(100,100,200,25);
@@ -175,20 +189,55 @@ public class EscapeRoom {
     public static void contentInsideItems(){
        if(flashLight.isSelected()){
             fL =1;
+
+            panel.remove(screwDriverDialogueLabel);
+            panel.remove(dresserDialogueLabel);
+            panel.add(UVDialogueLabel);
+            UVDialogueLabel.setBounds(100,15,300,25);
+
+            panel.updateUI();
+
            System.out.println(fL);
         }
        if(screwDriver.isSelected()){
            sD = 2;
+
+           panel.remove(UVDialogueLabel);
+           panel.remove(dresserDialogueLabel);
+           panel.add(screwDriverDialogueLabel);
+           screwDriverDialogueLabel.setBounds(100,15,300,25);
+
+           panel.updateUI();
+
            System.out.println(sD);
        }
+       if (openCar.isSelected()){
+
+           if(sD == 2){
+
+               kY = 3;
+               panel.remove(toyCarDialogueLabel);
+               panel.add(keyDialogueLabel);
+               keyDialogueLabel.setBounds(100,15,300,25);
+
+               panel.updateUI();
+
+           }else{
+
+               panel.remove(toyCarDialogueLabel);
+               panel.add(missingScrewDialogueLabel);
+               missingScrewDialogueLabel.setBounds((100,15,300,25);
+
+               panel.updateUI();
+
+
+           }
+
+
+
+       }
     }
-    public static void toyCarLayout(){
 
-
-
-
-
-    }
     public static void safeLayout(){
 
 
